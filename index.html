@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Army Pigment — Paint locker for miniature painters</title>
+  <meta name="description" content="Army Pigment catalogues every pot you own, every colour you want, and every mix you make. An independent hobby app for miniature painters." />
+  <meta name="theme-color" content="#0B1B3A" />
+  <link rel="icon" href="assets/logo.jpeg" />
+  <style>
+    :root {
+      --navy: #0B1B3A;
+      --ink: #14233F;
+      --muted: #5A6A84;
+      --paper: #F7F8FC;
+      --card: rgba(255,255,255,0.72);
+      --line: rgba(11,27,58,0.08);
+      --radius: 28px;
+      --shadow: 0 18px 50px rgba(11,27,58,0.10);
+      --max: 720px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wash {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(900px 500px at 12% -10%, rgba(255,120,170,0.28), transparent 60%),
+        radial-gradient(800px 480px at 88% 8%, rgba(90,180,255,0.26), transparent 55%),
+        radial-gradient(700px 520px at 50% 110%, rgba(170,120,255,0.22), transparent 55%),
+        radial-gradient(600px 400px at 70% 40%, rgba(255,200,90,0.16), transparent 50%),
+        var(--paper);
+    }
+    header {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 24px 24px;
+      text-align: center;
+    }
+    .logo {
+      width: 88px; height: 88px;
+      border-radius: 22px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      background: white;
+    }
+    h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.35rem);
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      font-weight: 700;
+    }
+    .tagline {
+      margin: 0 auto 18px;
+      max-width: 28rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    nav {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-top: 8px;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--navy);
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--line);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(11,27,58,0.06);
+    }
+    nav a:hover { background: white; }
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 24px 64px;
+    }
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 26px;
+      margin: 18px 0;
+    }
+    .card.about p { margin: 0 0 12px; }
+    .card.about p:last-child { margin-bottom: 0; }
+    .disclaimer {
+      font-size: 0.92rem;
+      color: var(--muted);
+      border-left: 3px solid #7B8CFF;
+      padding-left: 14px;
+      margin-top: 16px;
+    }
+    section.legal {
+      scroll-margin-top: 24px;
+    }
+    section.legal h2:first-child {
+      margin-top: 0;
+      font-size: 1.55rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+    section.legal h2 {
+      margin: 1.6em 0 0.55em;
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+    section.legal h3 {
+      margin: 1.25em 0 0.4em;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+    section.legal p, section.legal li {
+      color: #243552;
+      font-size: 0.98rem;
+    }
+    section.legal ul { padding-left: 1.2em; }
+    section.legal li { margin: 0.35em 0; }
+    section.legal hr {
+      border: none; border-top: 1px solid var(--line); margin: 1.5em 0;
+    }
+    .draft-note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9em;
+      background: rgba(11,27,58,0.06);
+      padding: 0.1em 0.35em;
+      border-radius: 6px;
+    }
+    a { color: #3A55C8; }
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 8px 24px 56px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--navy); font-weight: 600; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wash" aria-hidden="true"></div>
+  <header>
+    <img class="logo" src="assets/logo.jpeg" width="88" height="88" alt="Army Pigment logo" />
+    <h1>Army Pigment</h1>
+    <p class="tagline">Every pot you own. Every colour you want. Every mix you make.</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a href="mailto:armypigment@icloud.com">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section id="about" class="card about">
+      <p>Army Pigment is an independent hobby app for miniature painters — a personal paint locker and catalogue for the pots on your shelf, the colours you still want, and the mixes you invent.</p>
+      <p>Built for iPhone and iPad. Not a store. Not a manufacturer app. Just a beautiful place to keep your collection straight.</p>
+      <p class="disclaimer">Army Pigment is an independent hobby app and is not affiliated with, endorsed by, or sponsored by Games Workshop, Citadel, Vallejo, The Army Painter, Scale75, P3, AK Interactive, or any other paint manufacturer. Brand names appear only to help you identify products in your personal catalogue. Trademarks belong to their owners.</p>
+    </section>
+
+    <section id="privacy" class="card legal">
+      <h2>Privacy Policy</h2>
+      <p><strong>Draft for review — not formal legal advice. Have a licensed attorney review before shipping.</strong> <strong>Last updated:</strong> September 15, 2026 <strong>App:</strong> Army Pigment <strong>Developer:</strong> Nathan Lynn</p>
+<p>This Privacy Policy explains what information Army Pigment handles and how it is used. By using the app, you agree to this policy.</p>
+<h2>Who we are</h2>
+<p>Army Pigment is an independent hobby app that helps miniature painters catalogue paint pots, wishlists, mixes, and related hobby info. It is <strong>not</strong> owned, operated, endorsed, or sponsored by any paint manufacturer or game publisher.</p>
+<p><strong>Privacy / support contact:</strong> armypigment@icloud.com</p>
+<h2>What we collect</h2>
+<p>Depending on how you use the app, we may process the following.</p>
+<h3>Account information</h3>
+<ul>
+<li>Email address and sign-in credentials when you create or use an account</li>
+<li>Basic account settings and preferences you choose in Settings</li>
+</ul>
+<h3>Collection data you add</h3>
+<ul>
+<li>Paints you mark as owned, wishlist, low, or similar status</li>
+<li>Mixes (including names, notes, and mix photos you choose to save)</li>
+<li>Other catalogue choices you make in the app</li>
+</ul>
+<p><strong>Today, much of your collection data is stored on your device.</strong> If we later offer optional cloud sync (for example iCloud) or server-backed backup, that data may also be stored with Apple or our hosting provider under your account. We will update this policy before any such feature goes live and name the services involved.</p>
+<h3>Device permissions and features</h3>
+<ul>
+<li><strong>Camera</strong> — only when you use a feature that needs it (for example barcode capture or mix photos). We do not access the camera in the background. Photos you save as part of a mix are treated as your collection content.</li>
+<li><strong>App preferences</strong> — for example News topics, default paint list, haptics, and similar settings</li>
+<li><strong>Home Screen widgets</strong> — widgets show information from your local collection and/or public hobby news feeds you enable; they do not give us extra personal data beyond what the app already uses</li>
+<li><strong>Diagnostics</strong> — crash or diagnostic information that Apple may provide to developers in anonymous or limited form through App Store Connect</li>
+</ul>
+<h3>Content we load for News</h3>
+<ul>
+<li>Hobby news headlines, thumbnails, and links loaded from public news or community sources so the News section and news-related widgets can update</li>
+<li>Opening an article typically opens the publisher’s page (for example in an in-app browser). We do not republish full third-party articles inside Army Pigment</li>
+</ul>
+<h3>Sharing you initiate</h3>
+<ul>
+<li>If you use share cards or the system share sheet, the content you choose to share is sent to the destination <strong>you</strong> pick (Messages, Mail, other apps). That destination’s privacy practices apply after you share.</li>
+</ul>
+<h3>What we do not do (current product)</h3>
+<ul>
+<li>We do <strong>not</strong> sell your personal information</li>
+<li>We do <strong>not</strong> use your collection to serve third-party ads</li>
+<li>We do <strong>not</strong> collect precise location for advertising or tracking</li>
+<li>We do <strong>not</strong> use third-party advertising or analytics SDKs that track you across other companies’ apps (if that changes, this policy will be updated before release)</li>
+</ul>
+<h2>How we use information</h2>
+<p>We use the information above to:</p>
+<ul>
+<li>Create and run your account and keep you signed in</li>
+<li>Show your paint locker, wishlist, mixes, and settings</li>
+<li>Power Home Screen widgets you add</li>
+<li>Load News headlines and links</li>
+<li>Improve reliability and fix bugs</li>
+<li>Respond if you contact support</li>
+</ul>
+<h2>Sharing</h2>
+<p>We share information only when needed to operate the app, for example:</p>
+<ul>
+<li><strong>Apple</strong> — App Store distribution, device services, Sign in with Apple if offered, and optional iCloud if you turn it on later</li>
+<li><strong>Future service providers</strong> — solely to host accounts, email, or support (we will name them here before they go live)</li>
+<li><strong>Legal</strong> — if required by law or to protect rights, safety, or the integrity of the service</li>
+</ul>
+<p>We do not sell or rent your data to paint brands, game publishers, or marketers.</p>
+<h2>Third-party brands and news</h2>
+<p>Paint brand and product <strong>names</strong> (for example Citadel, Vallejo, The Army Painter, and others) appear so you can identify products you already buy or want. Showing those names does <strong>not</strong> mean those companies receive your personal data from us, and it does <strong>not</strong> create an affiliation with them.</p>
+<p>News links and images come from public hobby or community sources. Publishers’ sites have their own privacy practices.</p>
+<h2>Children</h2>
+<p>Army Pigment is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided personal information, contact us at the email above and we will delete it.</p>
+<h2>Data retention</h2>
+<ul>
+<li>Local collection data stays on your device until you delete it or remove the app</li>
+<li>Account data is kept while your account is active</li>
+<li>You may request account deletion via Settings when available, or by emailing the contact above. We will delete or de-identify account data we control within a reasonable time, except where we must retain something for legal reasons</li>
+</ul>
+<h2>Your choices</h2>
+<ul>
+<li>Use local features without creating an account where the app allows it</li>
+<li>Deny camera permission (barcode and mix-photo features will not work)</li>
+<li>Remove Home Screen widgets</li>
+<li>Delete the app (removes local data on that device)</li>
+<li>Request account deletion as described above</li>
+</ul>
+<h2>International users</h2>
+<p>If you use the app from outside the United States, you understand that information may be processed in the United States (for example via Apple’s services or future hosting). Where required by law, we will provide additional notices or choices.</p>
+<h2>Changes</h2>
+<p>We may update this policy. The “Last updated” date will change. We will post the new version at the same public URL and link it from the app (Settings). Continued use after an update means you accept the revised policy, except where applicable law requires a different approach.</p>
+<h2>Contact</h2>
+<p>Privacy questions, access requests, or deletion requests: <strong>armypigment@icloud.com</strong></p>
+<hr>
+</section>
+
+    <section id="terms" class="card legal">
+      <h2>Terms of Use</h2>
+      <p><strong>Draft for review — not formal legal advice. Have a licensed attorney review before shipping.</strong> <strong>Last updated:</strong> September 15, 2026 <strong>App:</strong> Army Pigment <strong>Developer:</strong> Nathan Lynn</p>
+<p>These Terms of Use (“Terms”) govern your download and use of the Army Pigment mobile application. By downloading or using the app, you agree to these Terms. If you do not agree, do not use the app.</p>
+<h2>1. What Army Pigment is</h2>
+<p>Army Pigment is an independent hobby utility for miniature painters. It helps you catalogue paints, track a personal collection and wishlist, save mixes, use Home Screen widgets, share cards you create, and follow hobby news links.</p>
+<p>Army Pigment is <strong>not</strong> an official store, manufacturer product, or licensed companion app for any game system or paint brand.</p>
+<h2>2. Independent app — no affiliation (important)</h2>
+<p><strong>Army Pigment is not affiliated with, associated with, endorsed by, sponsored by, approved by, or connected to</strong> any paint manufacturer, game publisher, or retailer, including without limitation:</p>
+<ul>
+<li>Games Workshop Limited; Warhammer; Citadel; Citadel Colour; and related marks</li>
+<li>Acrylicos Vallejo, S.L. and Vallejo product lines</li>
+<li>The Army Painter ApS / The Army Painter and related products</li>
+<li>Scale75</li>
+<li>Privateer Press and P3 paints</li>
+<li>AK Interactive</li>
+<li>And any other brand or product names that appear in the catalogue</li>
+</ul>
+<p><strong>Brand and product names</strong> appear only so you can identify paints you may own or want in a <strong>personal catalogue</strong>. That reference use does not imply sponsorship, endorsement, partnership, joint venture, or any other relationship with those companies.</p>
+<p><strong>We do not claim ownership of</strong> those companies’ trademarks, logos, trade dress, bottle designs, packaging, or other brand assets. Army Pigment does <strong>not</strong> use borrowed company logos. Stylized presentation, generic bottle art, or in-app typography is Army Pigment’s own UI — not an official brand mark.</p>
+<p><strong>Do not treat Army Pigment as an official Games Workshop, Citadel, Vallejo, Army Painter, or other manufacturer product.</strong> You agree not to represent the app (or yourself using the app) as affiliated with those companies.</p>
+<p>Catalogue entries, colours on screen, barcode matches, and product details can be incomplete, inaccurate, or out of date. Always verify with the manufacturer or retailer before buying. On-screen colour will not perfectly match a physical pot.</p>
+<h2>3. Eligibility</h2>
+<p>You must be able to form a binding contract in your place of residence. The app is not directed at children under 13. If you are under the age of majority where you live, you may use the app only with a parent or guardian’s permission where required.</p>
+<h2>4. Your account</h2>
+<p>If you create an account, you must provide accurate information and keep your sign-in secure. You are responsible for activity under your account. We may suspend or close accounts that misuse the service or violate these Terms.</p>
+<p>You may request deletion of your account as described in the Privacy Policy.</p>
+<h2>5. Your content</h2>
+<p>Mixes, notes, photos, collection choices, and similar content you add remain yours. You grant us a limited, worldwide, non-exclusive license to store, process, and display that content solely so the app can work for you (including widgets, share cards you generate, and any optional sync you turn on later).</p>
+<p>Do not upload content you have no right to use, or content that is illegal, harmful, or infringing.</p>
+<h2>6. Acceptable use</h2>
+<p>You agree not to:</p>
+<ul>
+<li>Use the app to harass others or break the law</li>
+<li>Misuse barcode, search, sharing, or other features</li>
+<li>Reverse engineer the app except where allowed by law</li>
+<li>Attempt to disrupt servers, services, or other users</li>
+<li>Suggest or imply that Army Pigment is an official app of Games Workshop, Citadel, Vallejo, The Army Painter, Scale75, P3, AK Interactive, or any other manufacturer listed or shown in the catalogue</li>
+<li>Scrape, republish, or redistribute third-party news articles obtained through the app beyond normal personal use of links</li>
+</ul>
+<h2>7. News and third-party links</h2>
+<p>News headlines, images, and links may come from third-party hobby or community sources. We do not control those sites. Their content, accuracy, and policies are their own. Opening a link may take you to the publisher’s page (including in an in-app browser). Army Pigment is not responsible for third-party pages or for content you find there.</p>
+<h2>8. Premium features and future services</h2>
+<p>The app may later offer optional paid features or cloud sync (for example via Apple). Additional terms or App Store purchase rules may apply. Until those features ship, these Terms still cover the free catalogue features described above.</p>
+<h2>9. “As is” and limitation of liability</h2>
+<p>THE APP IS PROVIDED “AS IS” AND “AS AVAILABLE.” TO THE FULLEST EXTENT ALLOWED BY LAW, WE DISCLAIM WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+<p>Catalogue accuracy, barcode matches, colour appearance on screen, widget content, and news content are not guaranteed.</p>
+<p>TO THE FULLEST EXTENT ALLOWED BY LAW, WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, OR FOR LOST DATA, PROFITS, OR COLLECTION INFORMATION, ARISING FROM YOUR USE OF THE APP. OUR TOTAL LIABILITY FOR ANY CLAIM RELATING TO THE APP IS LIMITED TO THE GREATER OF (A) THE AMOUNT YOU PAID US FOR THE APP OR PREMIUM FEATURES IN THE 12 MONTHS BEFORE THE CLAIM, OR (B) USD $50.</p>
+<p>Some places do not allow certain limitations; in those places, our liability is limited to the maximum permitted by law.</p>
+<h2>10. App Store / Apple</h2>
+<p>If you downloaded the app from the Apple App Store, you also acknowledge Apple’s Licensed Application End User License Agreement terms that apply between you and Apple. Apple is not responsible for maintenance or support of Army Pigment. Claims related to the app are between you and the developer (Nathan Lynn), not Apple, except where Apple’s rules say otherwise. Apple and Apple’s subsidiaries are third-party beneficiaries of these Terms solely as needed to enforce Apple’s EULA rights.</p>
+<h2>11. Changes</h2>
+<p>We may update these Terms. The “Last updated” date will change. Continued use after changes means you accept the new Terms. If you do not agree, stop using the app and delete it.</p>
+<h2>12. Contact</h2>
+<p>Questions about these Terms: <strong>armypigment@icloud.com</strong></p>
+<h2>13. Governing law</h2>
+<p>These Terms are governed by the laws of the State of Missouri, USA, without regard to conflict-of-law rules, except where mandatory consumer laws in your place of residence say otherwise.</p>
+<hr>
+<h3>Short disclaimer (About / Settings footer)</h3>
+<p>Use this short line in Settings, About, or share-card footers:</p>
+<p>&gt; Army Pigment is an independent hobby app and is not affiliated with, endorsed by, or sponsored by Games Workshop, Citadel, Vallejo, The Army Painter, Scale75, P3, AK Interactive, or any other paint manufacturer. Brand names appear only to help you identify products in your personal catalogue. Trademarks belong to their owners.</p>
+<hr>
+</section>
+  </main>
+  <footer>
+    <p>© 2026 Nathan Lynn · <a href="mailto:armypigment@icloud.com">armypigment@icloud.com</a></p>
+    <p>Support &amp; privacy contact for the App Store.</p>
+  </footer>
+</body>
+</html>
