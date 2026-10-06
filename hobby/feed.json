@@ -9,6 +9,16 @@
       "summary": "My name is Nathan and I am a passionate miniature painter and the designer of Army Pigment. If you\u2019re reading this, I want to thank you for joining me on this creative journey. I have been working on this product for\u2026",
       "image": "https://nlynnstl-ops.github.io/army-pigment-site/assets/hobby/welcome-1.1-hero.jpg",
       "publishedAt": 1759716000000
+    },
+    {
+      "id": "army-pigment:paint-like-an-artist",
+      "source": "army-pigment",
+      "sourceName": "Army Pigment",
+      "title": "Paint Like an Artist",
+      "url": "https://nlynnstl-ops.github.io/army-pigment-site/hobby/paint-like-an-artist.html",
+      "summary": "\u201cLife is not made more valuable by what we acquire but by what we appreciate.\u201d",
+      "image": "https://nlynnstl-ops.github.io/army-pigment-site/assets/hobby/paint-like-an-artist-hero.jpg",
+      "publishedAt": 1759715999000
     }
   ]
 }
